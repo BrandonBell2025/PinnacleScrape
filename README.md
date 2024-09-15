@@ -20,8 +20,5 @@ To run this project, follow these steps:
     ```bash
     pip install -r requirements.txt
     ```
-
-2. Install chromedriver:
-    Download chromedriver from https://developer.chrome.com/docs/chromedriver/downloads. Copy path and past into "path" variable in main.py
-
+    
 ---
