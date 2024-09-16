@@ -1,6 +1,9 @@
 from selenium import webdriver
 from selenium.webdriver.chrome.service import Service
 from webdriver_manager.chrome import ChromeDriverManager
+from selenium.webdriver.common.by import By
+from selenium.webdriver.support.ui import WebDriverWait
+from selenium.webdriver.support import expected_conditions as EC
 import requests
 from bs4 import BeautifulSoup
 import time
@@ -8,12 +11,16 @@ import time
 def scrape(url):
     driver = webdriver.Chrome(service=Service(ChromeDriverManager().install()))
     driver.get(url)
-    time.sleep(3)  # Wait for 5 seconds to allow the page to load
 
-    data = driver.page_source  # Capture the HTML after JavaScript has rendered
-    driver.quit()
+    try:
+        WebDriverWait(driver, 1000).until(EC.visibility_of_element_located((By.CLASS_NAME, 'label-e0291710e17e8c18f43f')))
+    except:
+        print("Odds didn't load in time")
+    finally:
+        data = driver.page_source  # Capture the HTML after JavaScript has rendered
+        driver.quit()
+
     soup = BeautifulSoup(data, 'html.parser')
-
     return soup
 
 def scrapeOdds(soup):
