@@ -2,4 +2,5 @@ Selenium
 beautifulsoup4
 webdriver-manager
 requests
+pandas
 #Install chromedriver and copy path to "path" variable in main.py
